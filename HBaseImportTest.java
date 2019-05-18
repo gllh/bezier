@@ -26,7 +26,7 @@ public class HBaseImportTest extends Thread {
     public HBaseImportTest() {
         config = HBaseConfiguration.create();
         try {
-            table = new HTable(config, Bytes.toBytes("tunnel"));
+            table = new HTable(config, Bytes.toBytes("tunnel"));//上传到Hbase上‘tunnel’表
             admin = new HBaseAdmin(config);
         } catch (IOException e) {
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class HBaseImportTest extends Thread {
             while ((line = br.readLine()) != null) {
                 count++;
                 put(line);
-                if (count % 100000 == 0)//没10万行数据输出上传提示
+                if (count % 100000 == 0)//每10万行数据输出上传提示
                     System.out.println(count);
             }
         } catch (IOException e) {
